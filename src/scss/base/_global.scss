@@ -1,0 +1,25 @@
+.flex{
+    display: flex;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.darkCard{
+    background-color: $darkModeCard;
+    color: white;
+}
+
+.lightCard{
+    background-color: $lightModeCard;
+    color: black;
+}
+
+.darkBG{
+    background-color: $darkModeBG;
+    color: white;
+}
+

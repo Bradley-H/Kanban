@@ -1,0 +1,30 @@
+@mixin centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@mixin tablet {
+    @media screen and (min-width: toRem($tablet)) {
+        @content;
+    }   
+}
+
+@mixin laptop {
+    @media screen and (min-width: toRem($laptop)) {
+        @content;
+    }   
+}
+
+@mixin desktop {
+    @media screen and (min-width: toRem($desktop)) {
+        @content;
+    }   
+}
+
+@mixin large {
+    @media screen and (min-width: toRem($large)) {
+        @content;
+    }   
+}
