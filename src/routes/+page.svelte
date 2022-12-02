@@ -1,10 +1,10 @@
 <script lang="ts">
     export let data: any = {};
     //components
-    import Header from "../components/Header/Header.svelte";
-    import Columns from "../components/Main/Columns.svelte";
-    import Card from "../components/Main/Card.svelte";
-    import Sidenav from '../components/SideNav/Sidenav.svelte';
+    import Header from "$lib/Header/Header.svelte";
+    import Columns from "$lib/Main/Columns.svelte";
+    import Card from "$lib/Main/Card.svelte";
+    import SideNav from '$lib/SideNav/SideNav.svelte';
     //store
     import { globalStore } from "../stores/globalStore";
 
@@ -77,7 +77,7 @@
 
 
 <Header currentBoard={name}/>
-<Sidenav board={data.boards} {currentBoard} on:boardClick={boardClick}/>
+<SideNav board={data.boards} {currentBoard} on:boardClick={boardClick}/>
 <div class="container {$globalStore.theme}BG">
     <main class="content" class:active={$globalStore.navbar}>
         {#await data.boards}
