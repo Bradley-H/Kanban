@@ -37,3 +37,13 @@
 %white{
     color: white;;
 }
+
+%fontSizes{
+    font-size: toRem($fontMobile);
+    @include tablet{
+        font-size: toRem($fontTablet);
+    }
+    @include desktop {
+        font-size: toRem($fontDesktop);
+    }
+}

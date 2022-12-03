@@ -21,14 +21,14 @@
         position: fixed;
         top: 0;
         z-index: 2;
-        @include large{
-            height: toRem($headerHeightLarge);
+        @include xl{
+            height: toRem($headerHeightXL);
         }
 
         &_logo{
             @extend %centered;
             padding: 0 toRem(5);
-            margin-right: toRem(3);
+            margin: 0 toRem(5) 0 toRem(10);
             @include tablet{
                 display: flex;
                 justify-content: start;
@@ -37,16 +37,13 @@
                 margin-right: toRem(20);
                 width: toRem($logoWidth);
             }
-            @include large{
-                width: toRem($logoWidthLarge);
+            @include xl{
+                width: toRem($logoWidthXL);
             }
             img{
                 height: max-content;
                 @include tablet{
                     margin-left: .5rem;
-                }
-                @include desktop{
-                    transform: scale(1.25) translateX(1.5rem);
                 }
             }
         }
@@ -72,7 +69,10 @@
                     transform: translateY(1px);
                 }
                 @include desktop{
-                    font-size: 1.75rem
+                    font-size: 1.3rem
+                }
+                @include xl{
+                    font-size: 1.5rem
                 }
             }
         }
@@ -91,10 +91,11 @@
                     @include centered;
                 }
                 @include desktop{
+                    width: 150px;
+                    padding: toRem(11);
+                }
+                @include xl{
                     width: 200px;
-                    padding: 1rem;
-                    font-size: 1.3rem;
-                    margin-right: 1rem;
                 }
                 &:hover{
                     background-color: $primaryHover;

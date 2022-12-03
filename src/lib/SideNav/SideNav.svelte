@@ -3,35 +3,35 @@
     export let board: any[] = [];
     export let currentBoard: number = 0;
     // svelte imports //
-    import {createEventDispatcher} from "svelte";
+    import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
     //stores //
-    import {globalStore} from '../../stores/globalStore';
+    import { globalStore } from "../../stores/globalStore";
     // constants //
-    import {toggleNavbar} from '../../constants/functions';
+    import { toggleNavbar } from "../../constants/functions";
     // class //
     let navbar = {
-        themeChange(){
-            if($globalStore.theme === "dark"){
-            globalStore.update($store => {
-                $store.theme = "light";
-                return $store;
-            });
+        themeChange() {
+            if ($globalStore.theme === "dark") {
+                globalStore.update(($store) => {
+                    $store.theme = "light";
+                    return $store;
+                });
             } else {
-                globalStore.update($store => {
+                globalStore.update(($store) => {
                     $store.theme = "dark";
                     return $store;
                 });
             }
         },
-    }
+    };
 
-    function dispatchBoard(e:any){
+    function dispatchBoard(e: any) {
         dispatch("boardClick", e);
     }
     //variables
-    let innerWidth: number = 0
-    
+    let innerWidth: number = 0;
+
     // scss defintions //
     import "../../scss/styles.scss";
 </script>
@@ -39,17 +39,17 @@
 <style lang="scss">
     @import "../../scss/util/index";
     //component specific placeholder
-    %border{
+    %border {
         border-top-right-radius: toRem(25);
         border-bottom-right-radius: toRem(25);
     }
 
-    %fixed{
+    %fixed {
         position: fixed;
     }
     //
 
-    .nav{
+    .nav {
         @extend %fixed;
         padding: toRem(15) toRem(0);
         top: 15%;
@@ -60,11 +60,11 @@
         z-index: 2;
         transition: $primaryTransition;
         transition-delay: 150ms;
-        &.active{
+        &.active {
             left: 50%;
             transform: translateX(-50%);
         }
-        @include tablet{
+        @include tablet {
             left: 0;
             top: toRem($headerHeight - 1.5);
             height: 100%;
@@ -72,113 +72,109 @@
             border-radius: 0;
             transform: translateX(-100%);
             transition-delay: unset;
-            &.active{
+            &.active {
                 transform: translateX(0);
                 left: 0;
             }
         }
-        @include large{
-            top: toRem($headerHeightLarge - 1.5);
-            width: toRem($logoWidthLarge);
+        @include xl {
+            top: toRem($headerHeightXL - 1.5);
+            width: toRem($logoWidthXL);
         }
-        &_header{
+        &_header {
             color: $mixedText;
             margin-left: toRem(12);
-            h6{
-                @include desktop{
-                font-size: toRem(21);
-            }
+            h6 {
+               @extend %fontSizes;
             }
         }
-        &_boards{
-            gap: .8rem;
+        &_boards {
+            gap: 0.8rem;
             min-height: 70px;
             max-height: 300px;
             overflow: auto;
             margin-bottom: 3rem;
-            @include tablet{
-                max-height:70%
+            @include tablet {
+                max-height: 70%;
             }
-            .board{
+            .board {
                 padding: toRem(10) toRem(15);
                 width: 90%;
                 align-items: center;
                 gap: 10px;
                 cursor: pointer;
-                &.active{
+                &.active {
                     background-color: $primaryColor;
                     @extend %border;
-                    h6{
+                    h6 {
                         @extend %white;
                     }
-                    path{
+                    path {
                         @extend %white;
                     }
                 }
 
-                &:hover{
+                &:hover {
                     background-color: white;
                     @extend %border;
-                    h6{
-                        color:$primaryColor;
+                    h6 {
+                        color: $primaryColor;
                     }
-                    path{
+                    path {
                         fill: $primaryColor;
                     }
                 }
-                h6{
+                h6 {
                     color: $mixedText;
-                    @include desktop{
-                    font-size: 1.3rem;
-                }
+                    @extend %fontSizes;
                 }
 
-                svg{
-                    @include desktop{
-                    transform: scale(1.3);
-                    overflow: visible;
-                }
+                svg {
+                    @include desktop {
+                        transform: scale(1.3);
+                        overflow: visible;
+                    }
                 }
             }
-                .nav_newBoard{
+            .nav_newBoard {
                 align-items: center;
                 gap: 5px;
                 color: $primaryColor;
                 padding: toRem(10) toRem(15);
                 cursor: pointer;
-                margin-bottom: .5rem;
-                svg{
+                margin-bottom: 0.5rem;
+                svg {
                     stroke: $primaryColor;
                 }
             }
         }
-        .ThemeSwitch{
+        .ThemeSwitch {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             bottom: 1rem;
             margin: 0 auto;
             width: 95%;
-            .themeContainer{
+            .themeContainer {
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
                 padding: toRem(10);
                 border-radius: toRem(8);
                 gap: 2px;
-                &.lightBG{
+                &.lightBG {
                     background-color: darken($lightModeBG, 2);
                 }
-                input.slider{
+                input.slider {
                     width: 45px;
                     height: 20px;
                     background: $primaryColor;
                     outline: none;
-                    -webkit-transition: .2s;
-                    transition: opacity .2s;
+                    -webkit-transition: 0.2s;
+                    transition: opacity 0.2s;
                     border-radius: 34px;
                     position: relative;
-                    transition: all .5s ease-in-out;
+                    transition: all 0.5s ease-in-out;
                     &:before {
                         content: "";
                         position: absolute;
@@ -187,8 +183,8 @@
                         left: 0px;
                         bottom: 0px;
                         background-color: white;
-                        -webkit-transition: .2s;
-                        transition: .2s;
+                        -webkit-transition: 0.2s;
+                        transition: 0.2s;
                         border-radius: 50%;
                     }
                     &:checked:before {
@@ -198,25 +194,25 @@
             }
         }
     }
-    .overlay{
+    .overlay {
         @extend %fixed;
         top: 0;
         left: 0;
         z-index: 1;
-        &.active{
+        &.active {
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        @include tablet{
+        @include tablet {
             display: none;
         }
     }
 
-    .hide{
+    .hide {
         display: none;
         position: fixed;
-        @include tablet{
+        @include tablet {
             @include centered;
             background-color: $primaryColor;
             left: 0;
@@ -226,26 +222,18 @@
             border-top-right-radius: toRem(20);
             border-bottom-right-radius: toRem(20);
             z-index: 5;
-            @include desktop{
-                top: 90%;
-                width: toRem(95);
-                height: toRem(60);
-            }
-            &:hover{
+            &:hover {
                 background-color: $primaryHover;
             }
-            svg{
+            svg {
                 transform: scale(1.4);
-                @include desktop{
-                    transform: scale(1.9);
-                }
             }
         }
     }
 
-    .lightCard{
-        .board{
-            &:hover{
+    .lightCard {
+        .board {
+            &:hover {
                 background-color: darken($lightModeBG, 2);
                 color: $primaryColor;
             }

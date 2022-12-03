@@ -1,16 +1,16 @@
 <script lang="ts">
-        import {globalStore} from '../../stores/globalStore';
+        import { globalStore } from "../../stores/globalStore";
         //props
         export let title: string = "";
         export let subtasks: any[] = [];
 
-import "../../scss/styles.scss";
+        import "../../scss/styles.scss";
 </script>
 
 <style lang="scss">
         @import "../../scss/util/index";
 
-        .card{
+        .card {
                 display: flex;
                 flex-direction: column;
                 padding: toRem(15);
@@ -19,20 +19,29 @@ import "../../scss/styles.scss";
                 border-radius: toRem(8);
                 gap: 10px;
                 cursor: grab;
-                &.darkCard{
+                max-width: 350px;
+                &.darkCard {
                         box-shadow: -1px 3px 4px 3px #202434;
                 }
-                &.lightCard{
+                &.lightCard {
                         box-shadow: -1px 3px 4px 3px #e6e6e6;
                 }
-                h6{
-                        @include desktop{
-                                font-size: 1.25rem;
+                h6 {
+                        font-size: toRem($fontMobile);
+                        @include tablet {
+                                font-size: toRem($fontTablet);
+                        }
+                        @include desktop {
+                                font-size: toRem($fontDesktop);
                         }
                 }
-                p{
-                        @include desktop{
-                                font-size: 1.15rem;
+                p {
+                        font-size: toRem($fontMobile - 1);
+                        @include tablet {
+                                font-size: toRem($fontTablet - 1);
+                        }
+                        @include desktop {
+                                font-size: toRem($fontDesktop - 1);
                         }
                 }
         }
@@ -41,5 +50,5 @@ import "../../scss/styles.scss";
 
 <article class="card {$globalStore.theme}Card">
         <h6>{title}</h6>
-        <p>{subtasks} of {subtasks.length}  subtasks completed</p>
+        <p>{subtasks} of {subtasks.length} subtasks completed</p>
 </article>

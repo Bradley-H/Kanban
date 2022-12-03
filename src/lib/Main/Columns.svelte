@@ -27,15 +27,14 @@
         width: toRem(270);
         height: max-content;
         @include desktop {
-            width: toRem(400);
+            width: toRem(360);
         }
         &_header {
             margin-left: toRem(15);
             position: relative;
             margin-bottom: toRem(18);
             p {
-                font-size: toRem(17);
-                font-weight: bold;
+                @extend %fontSizes;
             }
         }
         &_content {

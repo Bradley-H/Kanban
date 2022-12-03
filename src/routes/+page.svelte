@@ -34,17 +34,18 @@
         flex-direction: column;
         min-height: 100%;
         min-width: 100%;
-        overflow: scroll;
+        // overflow: auto;
         margin-top: toRem($headerHeight);
         padding-left: 2rem;
-        @include desktop{
-            margin-top: toRem($headerHeightLarge);
+        @include xl{
+            margin-top: toRem($headerHeightXL);
             height: max-content;
         }
         .content {
             display: flex;
-            height: 100vh;
-            padding: 2.25rem 6rem 6rem 2.25rem;
+            min-height: 100vh;
+            max-height: max-content;
+            padding: .75rem 6rem 2rem 2.25rem;
             transition: $primaryTransition;
             overflow-y: auto;
             @include tablet {
@@ -52,9 +53,9 @@
                     margin-left: toRem($logoWidth);
                 }
             }
-            @include large{
+            @include xl{
                 &.active{
-                    margin-left: toRem($logoWidthLarge);
+                    margin-left: toRem($logoWidthXL);
                 }
             }
             &_boards{
@@ -66,10 +67,17 @@
                 }
             }
             .newColumn{
-                display: flex;
-                min-height: 20%;
-                height: 100vh;
+                @include centered;
+                min-height: toRem(400);
+                max-height: toRem(calc(100vh - toRem($headerHeight)));
+                margin-top: 2.4rem;
+                width: max-content;
                 background-color: pink;
+                padding: .75rem;
+                cursor: pointer;
+                h1{
+                    font-size: toRem(15);
+                }
             }
     }
 }
@@ -90,11 +98,12 @@
                     <Card title={task.title}/>
                 {/each}
             </Columns>
-            {/each}        
+            {/each}
+            <div class="newColumn">
+                <h1>+ Add New Column</h1>
+        </div>          
         </div>
         {/await}
-        <div class="newColumn">
-            <h1>+ Add New Column</h1>
-    </div>  
+        
    </main>
 </div> 

@@ -20,6 +20,12 @@ $primaryTransition: all 0.5s ease-in-out;
 
 //components specific variables
 $logoWidth: 225;
-$logoWidthLarge: 300;
-$headerHeight: 65;
-$headerHeightLarge: 100;
+$logoWidthXL: 300;
+$headerHeight: 75;
+$headerHeightXL: 100;
+
+//font sizes by device //
+$fontMobile: 13;
+$fontTablet: 14;
+$fontDesktop: 15;
+$fontLarge: 18;

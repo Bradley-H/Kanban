@@ -28,3 +28,9 @@
         @content;
     }   
 }
+
+@mixin xl {
+    @media screen and (min-width: toRem($xl)) {
+        @content;
+    }   
+}
