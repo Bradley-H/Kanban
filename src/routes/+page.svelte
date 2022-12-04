@@ -72,12 +72,16 @@
                 @include centered;
                 height: 65vh;
                 margin-top: 2.4rem;
-                width: max-content;
                 padding: .75rem;
                 cursor: pointer;
+                text-align: center;
                 h1{
-                    font-size: toRem(15);
+                    font-size: toRem(13);
                     color: $mixedText;
+                    width: max-content;
+                    @include large{
+                        font-size: toRem(15);
+                    }
                 }
             }
     }
