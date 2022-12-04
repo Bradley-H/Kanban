@@ -5,6 +5,7 @@
     import Columns from "$lib/Main/Columns.svelte";
     import Card from "$lib/Main/Card.svelte";
     import SideNav from '$lib/SideNav/SideNav.svelte';
+    import Button from '$lib/Button/Button.svelte';
     //store
     import { globalStore } from "../stores/globalStore";
 
@@ -61,49 +62,79 @@
             &_boards{
                 display: flex;
                 height: 100%;
-                gap: toRem(25);
-                @include large{
+                width: 100%;
+                @include desktop{
                     gap: 1rem;
                 }
             }
+            
             .newColumn{
                 @include centered;
-                min-height: toRem(400);
-                max-height: toRem(calc(100vh - toRem($headerHeight)));
+                height: 65vh;
                 margin-top: 2.4rem;
                 width: max-content;
-                background-color: pink;
                 padding: .75rem;
                 cursor: pointer;
                 h1{
                     font-size: toRem(15);
+                    color: $mixedText;
                 }
             }
     }
 }
+
+.noBoards{
+                @include centered;
+                flex-direction: column;
+                height: 100vh;
+                width: 100%;
+                gap: toRem(15);
+                text-align: center;
+                padding: 0;
+                h6{
+                    color: $mixedText;
+                }
+            }
 </style>
 
 
-<Header currentBoard={name}/>
-<SideNav board={data.boards} {currentBoard} on:boardClick={boardClick}/>
-<div class="container {$globalStore.theme}BG">
-    <main class="content" class:active={$globalStore.navbar}>
-        {#await data.boards}
-            <h1>Getting Data, please wait....</h1>
-        {:then _}
-        <div class="content_boards">
-            {#each data.boards[currentBoard].columns as brd, i (i) }
-            <Columns name={brd.name} tasks={brd.tasks}>
-                {#each brd.tasks as task}
-                    <Card title={task.title}/>
-                {/each}
-            </Columns>
-            {/each}
-            <div class="newColumn">
-                <h1>+ Add New Column</h1>
-        </div>          
+<Header currentBoard={name} />
+<SideNav board={data.boards} {currentBoard} on:boardClick={boardClick} />
+{#await data.boards}
+    <h1>Getting Data, please wait....</h1>
+{:then _}
+
+
+    {#if !data.boards[currentBoard].columns}
+        <div class="noBoards {$globalStore.theme}BG">
+            <h6>This board is Empty.</h6>
+            <h6>Create a new column to get started</h6>
+            <Button text="+ Add New Column" />
         </div>
-        {/await}
-        
-   </main>
-</div> 
+
+
+    {:else}
+        <div class="container {$globalStore.theme}BG">
+            <main class="content" class:active={$globalStore.navbar}>
+                <div class="content_boards">
+
+
+                    {#each data.boards[currentBoard].columns as brd, i (i)}
+                        <Columns name={brd.name} tasks={brd.tasks}>
+                            {#each brd.tasks as task}
+                                <Card title={task.title} />
+                            {/each}
+                        </Columns>
+                    {/each}
+
+
+                    <div class="newColumn {$globalStore.theme}Card">
+                        <h1>+ Add New Column</h1>
+                    </div>
+
+
+                </div>
+            </main>
+        </div>
+    {/if}
+{/await}

@@ -14,9 +14,9 @@
         display: flex;
         position: absolute;
         left: toRem(-2);
-        top: toRem(8);
-        width: 11px;
-        height: 11px;
+        top: toRem(4);
+        width: 13px;
+        height: 13px;
         border-radius: 100%;
     }
 
@@ -27,12 +27,17 @@
         width: toRem(270);
         height: max-content;
         @include desktop {
-            width: toRem(360);
+            min-width: toRem(300);
+            max-width: 100%;
+            margin-left: 1.5rem;
         }
         &_header {
             margin-left: toRem(15);
             position: relative;
             margin-bottom: toRem(18);
+            width: max-content;
+            text-align: center;
+
             p {
                 @extend %fontSizes;
             }
@@ -41,6 +46,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
             @include desktop {
                 gap: 25px;
             }

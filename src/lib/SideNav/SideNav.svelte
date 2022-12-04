@@ -64,19 +64,19 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        @include tablet {
-            left: 0;
-            top: toRem($headerHeight - 1.5);
-            height: 100%;
-            width: toRem($logoWidth);
-            border-radius: 0;
-            transform: translateX(-100%);
-            transition-delay: unset;
-            &.active {
-                transform: translateX(0);
+            @include tablet {
                 left: 0;
+                top: toRem($headerHeight - 1.5);
+                height: 100%;
+                width: toRem($logoWidth);
+                border-radius: 0;
+                transform: translateX(-100%);
+                transition-delay: unset;
+                &.active {
+                    transform: translateX(0);
+                    left: 0;
+                }
             }
-        }
         @include xl {
             top: toRem($headerHeightXL - 1.5);
             width: toRem($logoWidthXL);
@@ -85,7 +85,7 @@
             color: $mixedText;
             margin-left: toRem(12);
             h6 {
-               @extend %fontSizes;
+                @extend %fontSizes;
             }
         }
         &_boards {
@@ -106,7 +106,7 @@
                 &.active {
                     background-color: $primaryColor;
                     @extend %border;
-                    h6 {
+                    p {
                         @extend %white;
                     }
                     path {
@@ -148,50 +148,19 @@
                 }
             }
         }
-        .ThemeSwitch {
+        .ThemeSwitch{
+            @include centered;
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100%;
             bottom: 1rem;
-            margin: 0 auto;
-            width: 95%;
-            .themeContainer {
+            .themeContainer{
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
                 padding: toRem(10);
-                border-radius: toRem(8);
-                gap: 2px;
-                &.lightBG {
-                    background-color: darken($lightModeBG, 2);
-                }
-                input.slider {
-                    width: 45px;
-                    height: 20px;
-                    background: $primaryColor;
-                    outline: none;
-                    -webkit-transition: 0.2s;
-                    transition: opacity 0.2s;
-                    border-radius: 34px;
-                    position: relative;
-                    transition: all 0.5s ease-in-out;
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        height: 20px;
-                        width: 20px;
-                        left: 0px;
-                        bottom: 0px;
-                        background-color: white;
-                        -webkit-transition: 0.2s;
-                        transition: 0.2s;
-                        border-radius: 50%;
-                    }
-                    &:checked:before {
-                        transform: translateX(25px);
-                    }
-                }
+                width: 90%;
             }
+
         }
     }
     .overlay {
@@ -242,6 +211,7 @@
 </style>
 
 
+
 <svelte:window bind:innerWidth={innerWidth}/>
 
 <nav class="{$globalStore.theme}Card nav flexCol" class:active={$globalStore.navbar}>
@@ -254,7 +224,7 @@
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="board flex" class:active={currentBoard === i} on:click={() => dispatchBoard(i)}>
                 <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z" fill="#828FA3"/></svg>
-                <h6>{brd.name}</h6>
+                <p>{brd.name}</p>
                 </div>
         {/each}
          <!--  -->
